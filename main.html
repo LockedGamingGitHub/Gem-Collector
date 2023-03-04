@@ -16,7 +16,10 @@
         document.getElementById('amountFactory').innerHTML = factory + " Factories";
         document.getElementById('costFactory').innerHTML = ((factory + 1) * 5000) + " Gems";
 
-        document.getElementById("gemsPerSec").innerHTML = (((autoClick) + (shopper * 3) + (farm * 10) + (factory * 75))) + " Gem(s) per Second";
+        document.getElementById('amountStore').innerHTML = store + " Stores";
+        document.getElementById('costStore').innerHTML = ((store + 1) * 40000) + " Gems";
+
+        document.getElementById("gemsPerSec").innerHTML = (((autoClick) + (shopper * 3) + (farm * 10) + (factory * 75) + (store * 500))) + " Gem(s) per Second";
 
         document.getElementById("gemsPerClick").innerHTML = clickmultiplier + " Gem(s) per Click";
 
@@ -34,6 +37,7 @@
     var shopper = 0;
     var farm = 0;
     var factory = 0;
+    var store = 0;
     var twoxGems = 0;
 
     var snd = new Audio("sounds/buy.mp3");
@@ -67,6 +71,13 @@
         update()
     }
     setInterval(timer4, 1000)
+
+    function timer5() {
+        gemcount = gemcount + (store * 500);
+        save()
+        update()
+    }
+    setInterval(timer5, 1000)
 </script>
 <html>
     <head>
@@ -172,9 +183,10 @@
         <br>
 
         <div class="right_header">
-            <div class="top_header"><div class="boxed">
+            <div class="top_header3">
+                <div class="boxed">
                 
-                <h3>Upgrades</h3>
+                <h3>GMC Upgrades</h3>
                 <button style="height: 60px; width: 60px; ;" id="toggle"><a href="#" onclick="buy2xGems();"><img src=images/2xGems.png></a></button>
                 
                 </div>
@@ -183,8 +195,8 @@
             
             <br>
 
-            <div class="top_header3">
-                <div class="boxed"><h3>Buildings</h3>
+            <div class="top_header">
+                <div class="boxed"><h3>GMS Upgrades</h3>
             <p>Buy 1 Auto Clicker</p>
             <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buyAutoClick();"><img src=images/mouse.png></a></button>
             <p id="costAutoClick"> Gems</p>
@@ -213,6 +225,14 @@
             <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buyFactory()"><img src=images/factory.png></a></button>
             <p id="costFactory"> Gems</p>
             <p id="amountFactory">0 Factories</p>
+
+            <div class="hr"></div>  
+            <br>
+
+            <p>Buy 1 Store</p>
+            <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buyStore()"><img src=images/store.png></a></button>
+            <p id="costStore"> Gems</p>
+            <p id="amountStore">0 Stores</p>
         </div></div>
             
             
@@ -238,6 +258,8 @@
 
                 localStorage.setItem("factory", factory);
 
+                localStorage.setItem("store", store);
+
                 localStorage.setItem("2xGems", twoxGems);
             }
 
@@ -262,6 +284,9 @@
 
                 factory = localStorage.getItem("factory");
                 factory = parseInt(factory);
+
+                store = localStorage.getItem("store");
+                store = parseInt(store);
                 
                 twoxGems = localStorage.getItem("2xGems");
                 twoxGems = parseInt(twoxGems);
@@ -278,7 +303,10 @@
                 document.getElementById('amountFactory').innerHTML = factory + " Factories";
                 document.getElementById('costFactory').innerHTML = ((factory + 1) * 5000) + " Gems";
 
-                document.getElementById("gemsPerSec").innerHTML = (((autoClick) + (shopper * 3) + (farm * 10) + (factory * 75))) + " Gem(s) per Second";
+                document.getElementById('amountFactory').innerHTML = store + " Stores";
+                document.getElementById('costFactory').innerHTML = ((store + 1) * 40000) + " Gems";
+
+                document.getElementById("gemsPerSec").innerHTML = (((autoClick) + (shopper * 3) + (farm * 10) + (factory * 75) + (store * 40000))) + " Gem(s) per Second";
 
                 document.getElementById("gemsPerClick").innerHTML = clickmultiplier + " Gem(s) per Click";
 
@@ -338,6 +366,18 @@
                 if (gemcount >= ((factory + 1) * 5000)) {
                     gemcount = gemcount - ((factory + 1) * 5000)
                     factory = factory + 1
+                    totalbuildings = totalbuildings + 1
+                    save()
+                    snd.play();
+                    snd.playbackRate = 1.5
+                    update()
+                }
+            }
+
+            function buyStore() {
+                if (gemcount >= ((store + 1) * 40000)) {
+                    gemcount = gemcount - ((store + 1) * 40000)
+                    store = store + 1
                     totalbuildings = totalbuildings + 1
                     save()
                     snd.play();
