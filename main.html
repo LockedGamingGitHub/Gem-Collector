@@ -1,0 +1,350 @@
+<script>
+    function update() {
+        document.getElementById('text').value = gemcount;
+
+        document.title = "Gem Collecter | " + gemcount + " gems";
+
+        document.getElementById('amountAutoClick').innerHTML =  autoClick + " Auto Clickers";
+        document.getElementById('costAutoClick').innerHTML = ((autoClick + 1) * 15) + " Gems";
+
+        document.getElementById('amountShopper').innerHTML = shopper + " Shoppers";
+        document.getElementById('costShopper').innerHTML = ((shopper + 1) * 100) + " Gems";
+
+        document.getElementById('amountFarm').innerHTML = farm + " Farms";
+        document.getElementById('costFarm').innerHTML = ((farm + 1) * 750) + " Gems";
+
+        document.getElementById('amountFactory').innerHTML = factory + " Factories";
+        document.getElementById('costFactory').innerHTML = ((factory + 1) * 5000) + " Gems";
+
+        document.getElementById("gemsPerSec").innerHTML = (((autoClick) + (shopper * 3) + (farm * 10) + (factory * 75))) + " Gem(s) per Second";
+
+        document.getElementById("gemsPerClick").innerHTML = clickmultiplier + " Gem(s) per Click";
+
+        document.getElementById("gemcount").innerHTML = gemcount + " gem(s)";
+
+        document.getElementById("totalbuildings").innerHTML = totalbuildings + " total buildings";
+
+    }
+    
+    var clickmultiplier = 1;
+    var totalbuildings = 0;
+    var totalupgrades = 0;
+    var gemcount = 0;
+    var autoClick = 0;
+    var shopper = 0;
+    var farm = 0;
+    var factory = 0;
+    var twoxGems = 0;
+
+    var snd = new Audio("sounds/buy.mp3");
+    var snd2 = new Audio("sounds/click.mp3");
+
+
+    function timer() {
+        gemcount = gemcount + autoClick;
+        save()
+        update()
+    }
+    setInterval(timer, 1000)
+
+    function timer2() {
+        gemcount = gemcount + (shopper * 3);
+        save()
+        update()
+    }
+    setInterval(timer2, 1000)
+
+    function timer3() {
+        gemcount = gemcount + (farm * 10);
+        save()
+        update()
+    }
+    setInterval(timer3, 1000)
+
+    function timer4() {
+        gemcount = gemcount + (factory * 75);
+        save()
+        update()
+    }
+    setInterval(timer4, 1000)
+</script>
+<html>
+    <head>
+        <title>Gem Collecter | 0 gems</title>
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
+
+        <style>
+        body {
+        background-image: url('images/background.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        }
+
+        .top_header {
+            position: absolute;
+            top: 25px;
+            right: 500px;
+            width: 200px;
+            height: 100px;
+        }
+
+        .top_header2 {
+            position: absolute;
+            top: 25px;
+            right: 750px;
+            width: 200px;
+            height: 100px;
+        }
+
+        .top_header3 {
+            position: absolute;
+            top: 25px;
+            right: 250px;
+            width: 200px;
+            height: 100px;
+        }
+
+        .right_header {
+        color: #000000;
+        float: right;
+        }
+
+        .left_header {
+        color: #000000;
+        float: left;
+        }
+
+
+        .hr{
+            border:0.3rem solid rgb(86, 61, 0);
+            border-radius: 25px;
+            height:0;
+            width: 178px;
+        }
+
+        .boxed {
+            background-color: rgb(156, 139, 78);
+            padding-left: 2px;
+            border: 5px solid rgb(86, 61, 0);
+            border-radius: 25px;
+        }
+
+        .boxed2 {
+            background-color: rgb(156, 139, 78);
+            padding-left: 2px;
+            padding-right: 10px;            
+            border: 5px solid rgb(86, 61, 0);
+            border-radius: 25px;
+        }
+        </style>
+    </head>
+    <body onload="load()">
+
+        <p id="gemsPerSec">0 Gem(s) per Second</p>
+        <p id="gemsPerClick">1 Gem(s) per Click</p>
+        <a href=# onclick="add()"><img src="images/gem.png"></a>
+        <br><br>
+        <p><input type="text" id="text" disabled style= text-align:center> gems</p>
+        <script>
+            function add() {
+                gemcount = gemcount + 1 * clickmultiplier
+                document.getElementById('text').value = gemcount;
+                document.title = "Gem Collecter | " + gemcount + " gems"
+                save()
+                snd2.play();
+                snd2.playbackRate = 1.5
+            }
+        </script>
+
+
+        <div class="top_header2">
+            <div class="boxed2">
+                <h3>Stats:</h3>
+                <p id="gemcount">0 gems</p>
+                <p id="totalbuildings">0 total buildings</p>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="right_header">
+            <div class="top_header"><div class="boxed">
+                
+                <h3>Upgrades</h3>
+                <button style="height: 60px; width: 60px; ;" id="toggle"><a href="#" onclick="buy2xGems();"><img src=images/2xGems.png></a></button>
+                
+                </div>
+            </div>
+                
+            
+            <br>
+
+            <div class="top_header3">
+                <div class="boxed"><h3>Buildings</h3>
+            <p>Buy 1 Auto Clicker</p>
+            <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buyAutoClick();"><img src=images/mouse.png></a></button>
+            <p id="costAutoClick"> Gems</p>
+            <p id="amountAutoClick">0 Auto Clickers</p>
+
+            <div class="hr"></div>  
+            <br> 
+
+            <p>Buy 1 Shopper</p>
+            <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buyShopper()"><img src=images/shopper.png></a></button>
+            <p id="costShopper"> Gems</p>
+            <p id="amountShopper">0 Shoppers</p>
+
+            <div class="hr"></div>  
+            <br>
+
+            <p>Buy 1 Farm</p>
+            <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buyFarm()"><img src=images/farm.png></a></button>
+            <p id="costFarm"> Gems</p>
+            <p id="amountFarm">0 Farms</p>
+
+            <div class="hr"></div>  
+            <br>
+
+            <p>Buy 1 Factory</p>
+            <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buyFactory()"><img src=images/factory.png></a></button>
+            <p id="costFactory"> Gems</p>
+            <p id="amountFactory">0 Factories</p>
+        </div></div>
+            
+            
+        </div>
+        <br>
+            
+            
+     
+        <script>
+            
+            
+            
+            function save() {
+                localStorage.setItem("gemcount", gemcount);
+
+                localStorage.setItem("clickmultiplier", clickmultiplier);
+
+                localStorage.setItem("autoClick", autoClick);
+
+                localStorage.setItem("shopper", shopper);
+
+                localStorage.setItem("farm", farm);
+
+                localStorage.setItem("factory", factory);
+
+                localStorage.setItem("2xGems", twoxGems);
+            }
+
+            function load() {
+                gemcount = localStorage.getItem("gemcount");
+                gemcount = parseInt(gemcount);
+
+                clickmultiplier = localStorage.getItem("clickmultiplier");
+                clickmultiplier = parseInt(clickmultiplier);
+
+                document.getElementById('text').value = gemcount;
+                document.title = "Gem Collecter | " + gemcount + " gems"
+
+                autoClick = localStorage.getItem("autoClick");
+                autoClick = parseInt(autoClick);
+
+                shopper = localStorage.getItem("shopper");
+                shopper = parseInt(shopper);
+
+                farm = localStorage.getItem("farm");
+                farm = parseInt(farm);
+
+                factory = localStorage.getItem("factory");
+                factory = parseInt(factory);
+                
+                twoxGems = localStorage.getItem("2xGems");
+                twoxGems = parseInt(twoxGems);
+
+                document.getElementById('amountAutoClick').innerHTML =  autoClick + " Auto Clickers";
+                document.getElementById('costAutoClick').innerHTML = ((autoClick + 1) * 15) + " Gems";
+
+                document.getElementById('amountShopper').innerHTML = shopper + " Shoppers";
+                document.getElementById('costShopper').innerHTML = ((shopper + 1) * 100) + " Gems";
+
+                document.getElementById('amountFarm').innerHTML = farm + " Farms";
+                document.getElementById('costFarm').innerHTML = ((farm + 1) * 750) + " Gems";
+
+                document.getElementById('amountFactory').innerHTML = factory + " Factories";
+                document.getElementById('costFactory').innerHTML = ((factory + 1) * 5000) + " Gems";
+
+                document.getElementById("gemsPerSec").innerHTML = (((autoClick) + (shopper * 3) + (farm * 10) + (factory * 75))) + " Gem(s) per Second";
+
+                document.getElementById("gemsPerClick").innerHTML = clickmultiplier + " Gem(s) per Click";
+
+                document.getElementById("gemcount").innerHTML = gemcount + " gem(s)";
+
+                document.getElementById("totalbuildings").innerHTML = totalbuildings + " total buildings";
+            }
+
+            function buy2xGems() {
+                if (gemcount >= 750) {
+                twoxGems = twoxGems + 1;
+                clickmultiplier = clickmultiplier + 1;
+                document.getElementById("toggle").style.visibility="hidden";
+                save();
+                snd.play();
+                snd.playbackRate = 1.5
+                update()
+                }
+            }
+            function buyAutoClick() {
+                if (gemcount >= ((autoClick + 1) * 15)) {
+                    gemcount = gemcount - ((autoClick + 1) * 15)
+                    autoClick = autoClick + 1
+                    totalbuildings = totalbuildings + 1
+                    snd.play();
+                    snd.playbackRate = 1.5
+                    save()
+                    update()
+                }
+            }
+
+            function buyShopper() {
+                if (gemcount >= ((shopper + 1) * 100)) {
+                    gemcount = gemcount - ((shopper + 1) * 100)
+                    shopper = shopper + 1
+                    totalbuildings = totalbuildings + 1
+                    save()
+                    snd.play();
+                    snd.playbackRate = 1.5
+                    update()
+                }
+            }
+
+            function buyFarm() {
+                if (gemcount >= ((farm + 1) * 750)) {
+                    gemcount = gemcount - ((farm + 1) * 750)
+                    farm = farm + 1
+                    totalbuildings = totalbuildings + 1
+                    save()
+                    snd.play();
+                    snd.playbackRate = 1.5
+                    update()
+                }
+            }
+
+            function buyFactory() {
+                if (gemcount >= ((factory + 1) * 5000)) {
+                    gemcount = gemcount - ((factory + 1) * 5000)
+                    factory = factory + 1
+                    totalbuildings = totalbuildings + 1
+                    save()
+                    snd.play();
+                    snd.playbackRate = 1.5
+                    update()
+                }
+            }
+        </script>
+    </body>
+</html>
