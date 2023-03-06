@@ -4,6 +4,9 @@
 
         document.title = "Gem Collecter | " + gemcount + " gems";
 
+        document.getElementById('amount2xGems').innerHTML =  twoxGems + " Gem Multipliers";
+        document.getElementById('cost2xGems').innerHTML = ((twoxGems + 1) * (1000 * (10 * twoxGems))) + " Gems";
+
         document.getElementById('amountAutoClick').innerHTML =  autoClick + " Auto Clickers";
         document.getElementById('costAutoClick').innerHTML = ((autoClick + 1) * 15) + " Gems";
 
@@ -32,7 +35,7 @@
     var clickmultiplier = 1;
     var totalbuildings = 0;
     var totalupgrades = 0;
-    var gemcount = 1;
+    var gemcount = 0;
     var autoClick = 0;
     var shopper = 0;
     var farm = 0;
@@ -186,7 +189,10 @@
                 <div class="boxed">
                 
                 <h3>GMC Upgrades</h3>
-                <button style="height: 60px; width: 60px; ;" id="toggle"><a href="#" onclick="buy2xGems();"><img src=images/2xGems.png></a></button>
+                <p>Buy 1 Gem Multiplier</p>
+                <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buy2xGems()"><img src=images/2xGems.png></a></button>
+                <p id="cost2xGems"> Gems</p>
+                <p id="amount2xGems">0 Gem Multipliers</p>
                 
                 </div>
             </div>
@@ -316,9 +322,9 @@
 
             function buy2xGems() {
                 if (gemcount >= 750) {
+                gemcount = gemcount - ((twoxGems + 1) * 1000)
                 twoxGems = twoxGems + 1;
                 clickmultiplier = clickmultiplier + 1;
-                document.getElementById("toggle").style.visibility="hidden";
                 save();
                 snd.play();
                 snd.playbackRate = 1.5
