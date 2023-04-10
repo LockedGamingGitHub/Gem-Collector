@@ -1,22 +1,24 @@
+<!-- if game is launched from school computer, extract the zip folder. -->
+<!-- remember to publish changes from github desktop -->
 <script>
     function update() {
         document.getElementById('text').value = gemcount;
 
         document.title = "Gem Collecter | " + gemcount + " gems";
 
-        document.getElementById('amountAutoClick').innerHTML =  autoClick + " Auto Clickers";
+        document.getElementById('amountAutoClick').innerHTML =  autoClick;
         document.getElementById('costAutoClick').innerHTML = ((autoClick + 1) * 15) + " Gems";
 
-        document.getElementById('amountShopper').innerHTML = shopper + " Shoppers";
+        document.getElementById('amountShopper').innerHTML = shopper;
         document.getElementById('costShopper').innerHTML = ((shopper + 1) * 100) + " Gems";
 
-        document.getElementById('amountFarm').innerHTML = farm + " Farms";
+        document.getElementById('amountFarm').innerHTML = farm;
         document.getElementById('costFarm').innerHTML = ((farm + 1) * 750) + " Gems";
 
-        document.getElementById('amountFactory').innerHTML = factory + " Factories";
+        document.getElementById('amountFactory').innerHTML = factory;
         document.getElementById('costFactory').innerHTML = ((factory + 1) * 5000) + " Gems";
 
-        document.getElementById('amountSuperClick').innerHTML = superclick + " Super Clicks";
+        document.getElementById('amountSuperClick').innerHTML = superclick;
         document.getElementById('costSuperClick').innerHTML = ((superclick + 1) * (5000 * (superclick + 1))) + " Gems";
 
         document.getElementById("gemsPerSec").innerHTML = (((autoClick) + (shopper * 3) + (farm * 10) + (factory * 75))) + " Gem(s) per Second";
@@ -35,6 +37,7 @@
     var shopper = 0;
     var farm = 0;
     var factory = 0;
+
     var superclick = 0;
 
     var snd = new Audio("sounds/buy.mp3");
@@ -49,25 +52,25 @@
     setInterval(timer, 1000)
 
     function timer2() {
-        gemcount = gemcount + (shopper * 3);
+        gemcount = gemcount + shopper;
         save();
         update();
     }
     setInterval(timer2, 333.33333)
 
     function timer3() {
-        gemcount = gemcount + (farm * 10);
+        gemcount = gemcount + farm;
         save();
         update();
     }
-    setInterval(timer3, 1)
+    setInterval(timer3, 100)
 
     function timer4() {
-        gemcount = gemcount + (factory * 75);
+        gemcount = gemcount + factory;
         save();
         update();
     }
-    setInterval(timer4, 0.13333)
+    setInterval(timer4, 13.33333)
 </script>
 <html>
     <head>
@@ -88,7 +91,7 @@
         .top_header {
             position: absolute;
             top: 25px;
-            right: 500px;
+            right: 5px;
             width: 200px;
             height: 100px;
         }
@@ -170,6 +173,7 @@
     <body onload="load()">
 
         <p id="gemsPerSec">0 Gem(s) per Second</p>
+        <!-- add more GPC upgrades -->
         <p id="gemsPerClick">1 Gem(s) per Click</p>
         <a href=# onclick="add()"><img src="images/gem.png"></a>
         <br><br>
@@ -185,76 +189,107 @@
             }
         </script>
 
-
-        <div class="top_header2">
+        <!--
+            <div class="top_header2">
             <div class="boxed2">
                 <h3>Stats:</h3>
                 <div class="tooltip">
                     <p id="crumbs">0 crumbs</p>
-                    <span class="tooltiptext">Each time you get 100,000 gems, a crumb will be added. These crumbs are used to buy Crumb Upgrades.</span>
+                    <span class="tooltiptext">Crumbs are a currency to help you earn crumb upgrades to make huge changes to your GPS and GPC. Buy your first crumb upgrade to be able to earn more crumbs.</span>
                 </div>
                 
             </div>
         </div>
+        -->
+        
 
         <br>
 
-        <div class="right_header">
+        <!-- super click needs to be fixed -->
+
+        <!--
+            <div class="right_header">
             <div class="top_header"><div class="boxed">
-                
                 <h3>GMC Upgrades</h3>
-                <p>Buy 1 Super Click</p>
-                <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buySuperClick();"><img src=images/SuperClick.png></a></button>
-                <p id="costSuperClick"> Gems</p>
-                <p id="amountSuperClick">0 Super Clicks</p>
+                <p style="position: absolute; right: 50px; top: 40px">Super Click</p>
+                <div class="tooltip">
+                    <a href="#" onclick="buySuperClick();"><img src=images/SuperClick.png></a>
+                    <span class="tooltiptext">Every time you buy a Super Click, 1 GPC gets added.</span>
+                </div>
+                <p id="costSuperClick" style="position: absolute; left: 60px; top: 65px" > Gems</p>
+                <p id="amountSuperClick" style="font-size:large; position: absolute; right: 10px; top: 62.5px">0</p>
                 
                 </div>
             </div>
+        -->
+        
                 
             
             <br>
 
-            <div class="top_header3">
-            <div class="boxed"><h3>GMS Upgrades</h3>
-            <p>Buy 1 Auto Clicker</p>
+            <!-- change div to top_header3 after GT night-->
+            <div class="top_header">
+            <div class="boxed">
+            <h3>GMS Upgrades</h3>
+            <p style="position: absolute; right: 50px; top: 40px">Auto Clicker</p>
             <div class="tooltip">
-                <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buyAutoClick();"><img src=images/mouse.png></a></button>
+                <a href="#" onclick="buyAutoClick();"><img src=images/mouse.png></a>
                 <span class="tooltiptext">Every time you buy an autoclicker, 1 gem is earned every second.</span>
             </div>
 
-            <p id="costAutoClick"> Gems</p>
-            <p id="amountAutoClick">0 Auto Clickers</p>
+            <p id="costAutoClick" style="position: absolute; left: 60px; top: 65px"> Gems</p>
+            <p id="amountAutoClick" style="font-size:large; position: absolute; right: 10px; top: 62.5px">0 Auto Clickers</p>
+
+            <br>
+            <br>
 
             <div class="hr"></div>  
             <br> 
 
-            <p>Buy 1 Shopper</p>
-            <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buyShopper()"><img src=images/shopper.png></a></button>
-            <p id="costShopper"> Gems</p>
-            <p id="amountShopper">0 Shoppers</p>
+            <p style="position: absolute; top: 140px; left: 60px">Shopper</p>
+            <div class="tooltip">
+                <a href="#" onclick="buyShopper();"><img src=images/shopper.png></a>
+                <span class="tooltiptext">Every time you buy a shopper, 3 gems are earned every second.</span>
+            </div>
+
+            <p id="costShopper" style="position: absolute; left: 60px; top: 165px"> Gems</p>
+            <p id="amountShopper" style="font-size:large; position: absolute; right: 10px; top: 160px">0</p>
+
+            <br>
+            <br>
+        
 
             <div class="hr"></div>  
             <br>
 
-            <p>Buy 1 Farm</p>
-            <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buyFarm()"><img src=images/farm.png></a></button>
-            <p id="costFarm"> Gems</p>
-            <p id="amountFarm">0 Farms</p>
+            <p style="position: absolute; top: 235px; left: 60px">Farm</p>
+            <div class="tooltip">
+            <a href="#" onclick="buyFarm()"><img src=images/farm.png></a>
+            <span class="tooltiptext">Every time you buy a farm, 10 gems are earned every second.</span>
+            </div>
+            <p id="costFarm" style="position: absolute; left: 60px; top: 262.5px"> Gems</p>
+            <p id="amountFarm" style="font-size:large; position: absolute; right: 10px; top: 257.5px">0</p>
+
 
             <div class="hr"></div>  
             <br>
 
-            <p>Buy 1 Factory</p>
-            <button style="height: 60px; width: 60px; ;"><a href="#" onclick="buyFactory()"><img src=images/factory.png></a></button>
-            <p id="costFactory"> Gems</p>
-            <p id="amountFactory">0 Factories</p>
+            <p style="position: absolute; top: 310px; left: 60px">Factory</p>
+            <div class="tooltip">
+                <a href="#" onclick="buyFactory()"><img src=images/factory.png></a>
+                <span class="tooltiptext">Every time you buy a factory, 75 gems are earned every second.</span>
+            </div>
+            <p id="costFactory" style="position: absolute; left: 60px; top: 340.5px"> Gems</p>
+            <p id="amountFactory" style="font-size:large; position: absolute; right: 10px; top: 335.5px">0</p>
+            <br>
+            <br>
         </div></div>
             
             
         </div>
         <br>
             
-            
+            <!-- fix save and load functions, if it can not be fixed, then add save and load buttons-->
      
         <script>
             
@@ -300,26 +335,26 @@
                 factory = localStorage.getItem("factory");
                 factory = parseInt(factory);
                 
-                twoxGems = localStorage.getItem("superclick");
-                twoxGems = parseInt(superclick);
+                superclick = localStorage.getItem("superclick");
+                superclick = parseInt(superclick);
 
                 document.getElementById('text').value = gemcount;
 
                 document.title = "Gem Collecter | " + gemcount + " gems";
 
-                document.getElementById('amountAutoClick').innerHTML =  autoClick + " Auto Clickers";
+                document.getElementById('amountAutoClick').innerHTML =  autoClick;
                 document.getElementById('costAutoClick').innerHTML = ((autoClick + 1) * 15) + " Gems";
 
-                document.getElementById('amountShopper').innerHTML = shopper + " Shoppers";
+                document.getElementById('amountShopper').innerHTML = shopper;
                 document.getElementById('costShopper').innerHTML = ((shopper + 1) * 100) + " Gems";
 
-                document.getElementById('amountFarm').innerHTML = farm + " Farms";
+                document.getElementById('amountFarm').innerHTML = farm;
                 document.getElementById('costFarm').innerHTML = ((farm + 1) * 750) + " Gems";
 
-                document.getElementById('amountFactory').innerHTML = factory + " Factories";
+                document.getElementById('amountFactory').innerHTML = factory;
                 document.getElementById('costFactory').innerHTML = ((factory + 1) * 5000) + " Gems";
 
-                document.getElementById('amountSuperClick').innerHTML = superclick + " Super Clicks";
+                document.getElementById('amountSuperClick').innerHTML = superclick;
                 document.getElementById('costSuperClick').innerHTML = ((superclick + 1) * (5000 * (superclick + 1))) + " Gems";
 
                 document.getElementById("gemsPerSec").innerHTML = (((autoClick) + (shopper * 3) + (farm * 10) + (factory * 75))) + " Gem(s) per Second";
@@ -330,7 +365,7 @@
             }
 
             function buySuperClick() {
-                if (gemcount >= (5000 * (gemmultiplier + 1))) {
+                if (gemcount >= (5000 * (clickmultiplier + 1))) {
                 superclick = superclick + 1;
                 clickmultiplier = clickmultiplier + 1;
                 save();
@@ -343,7 +378,6 @@
                 if (gemcount >= ((autoClick + 1) * 15)) {
                     gemcount = gemcount - ((autoClick + 1) * 15)
                     autoClick = autoClick + 1
-                    totalbuildings = totalbuildings + 1
                     snd.play();
                     snd.playbackRate = 1.5
                     save()
@@ -355,7 +389,6 @@
                 if (gemcount >= ((shopper + 1) * 100)) {
                     gemcount = gemcount - ((shopper + 1) * 100)
                     shopper = shopper + 1
-                    totalbuildings = totalbuildings + 1
                     save()
                     snd.play();
                     snd.playbackRate = 1.5
@@ -367,7 +400,6 @@
                 if (gemcount >= ((farm + 1) * 750)) {
                     gemcount = gemcount - ((farm + 1) * 750)
                     farm = farm + 1
-                    totalbuildings = totalbuildings + 1
                     save()
                     snd.play();
                     snd.playbackRate = 1.5
@@ -379,17 +411,10 @@
                 if (gemcount >= ((factory + 1) * 5000)) {
                     gemcount = gemcount - ((factory + 1) * 5000)
                     factory = factory + 1
-                    totalbuildings = totalbuildings + 1
                     save()
                     snd.play();
                     snd.playbackRate = 1.5
                     update()
-                }
-            }
-
-            function earnCrumb() {
-                if (gemcount >= 100000) {
-                    
                 }
             }
         </script>
