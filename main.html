@@ -4,9 +4,9 @@
     function update() {
         document.getElementById('text').value = pizzaRollCount;
 
-        document.title = "Pizza Roll Incremental | " + pizzaRollCount + " Pizza Rolls";
+        document.title = "Pizza Roll Incremental | " + pizzaRollCount + " pizza rolls";
 
-        document.getElementById('amountAutoClick').innerHTML = autoClick;
+        document.getElementById('amountAutoClick').innerHTML =  autoClick;
         document.getElementById('costAutoClick').innerHTML = ((autoClick + 1) * 15) + " Pizza Rolls";
 
         document.getElementById('amountShopper').innerHTML = shopper;
@@ -21,9 +21,9 @@
         document.getElementById('amountMine').innerHTML = mine;
         document.getElementById('costMine').innerHTML = ((mine + 1) * 35000) + " Pizza Rolls";
 
-        document.getElementById("pizzaRollsPerSec").innerHTML = (((autoClick) + (shopper * 3) + (farm * 10) + (factory * 75) + (mine * 500))) + " Pizza Roll(s) per Second";
+        document.getElementById("PizzaRollsPerSec").innerHTML = (((autoClick) + (shopper * 3) + (farm * 10) + (factory * 75) + (mine * 500))) + " Pizza Roll(s) per Second";
 
-        document.getElementById("pizzaRollsPerClick").innerHTML = clickmultiplier + " Pizza Roll(s) per Click";
+        document.getElementById("PizzaRollsPerClick").innerHTML = clickmultiplier + " Pizza Roll(s) per Click";
 
     }
     
@@ -97,16 +97,43 @@
         .top_header {
             position: absolute;
             top: 25px;
-            right: 45px;
+            right: 5px;
             width: 200px;
             height: 100px;
         }
+
+        .top_header2 {
+            position: absolute;
+            top: 25px;
+            right: 500px;
+            width: 200px;
+            height: 100px;
+        }
+
+        .top_header3 {
+            position: absolute;
+            top: 25px;
+            right: 250px;
+            width: 200px;
+            height: 100px;
+        }
+
+        .right_header {
+        color: #000000;
+        float: right;
+        }
+
+        .left_header {
+        color: #000000;
+        float: left;
+        }
+
 
         .hr{
             border:0.3rem solid rgb(86, 61, 0);
             border-radius: 25px;
             height:0;
-            width: 198px;
+            width: 178px;
         }
 
         .boxed {
@@ -114,7 +141,16 @@
             padding-left: 2px;
             border: 5px solid rgb(86, 61, 0);
             border-radius: 25px;
-            width: 220px;
+            width: auto;
+        }
+        
+
+        .boxed2 {
+            background-color: rgb(156, 139, 78);
+            padding-left: 2px;
+            padding-right: 10px;            
+            border: 5px solid rgb(86, 61, 0);
+            border-radius: 25px;
         }
 
         .tooltip {
@@ -143,18 +179,18 @@
 
         </style>
     </head>
-    <body>
+    <body onload="load()">
 
         <p id="pizzaRollsPerSec">0 Pizza Roll(s) per Second</p>
         <p id="pizzaRollsPerClick">1 Pizza Roll(s) per Click</p>
-        <a href=# onclick="add()"><img src="images/pizzaroll.png"></a>
+        <a href=# onclick="add()"><img src="images/pizzaroll.png" width="150px" height="150px"></a>
         <br><br>
         <a href="#"><p><input type="text" id="text" disabled style= text-align:center></a> pizza rolls</p>
         <script>
             function add() {
                 pizzaRollCount = pizzaRollCount + 1 * clickmultiplier;
                 document.getElementById('text').value = pizzaRollCount;
-                document.title = "Pizza Roll Incremental | " + pizzaRollCount + " Pizza Rolls";
+                document.title = "Pizza Roll Incremental | " + pizzaRollCount + " pizza rolls";
                 save();
                 snd2.play();
                 snd2.playbackRate = 1.5;
@@ -177,7 +213,7 @@
             </div>
 
             <p id="costAutoClick" style="position: absolute; left: 60px; top: 65px"> Pizza Rolls</p>
-            <p id="amountAutoClick" style="font-size:large; position: absolute; right: -10px; top: 62.5px">0</p>
+            <p id="amountAutoClick" style="font-size:large; position: absolute; right: 10px; top: 62.5px">0</p>
 
             <br>
             <br>
@@ -192,7 +228,7 @@
             </div>
 
             <p id="costShopper" style="position: absolute; left: 60px; top: 165px"> Pizza Rolls</p>
-            <p id="amountShopper" style="font-size:large; position: absolute; right: -10px; top: 160px">0</p>
+            <p id="amountShopper" style="font-size:large; position: absolute; right: 10px; top: 160px">0</p>
 
             <br>
             <br>
@@ -207,7 +243,7 @@
             <span class="tooltiptext">Every time you buy a farm, 10 Pizza Rolls are earned every second.</span>
             </div>
             <p id="costFarm" style="position: absolute; left: 60px; top: 262.5px"> Pizza Rolls</p>
-            <p id="amountFarm" style="font-size:large; position: absolute; right: -10px; top: 257.5px">0</p>
+            <p id="amountFarm" style="font-size:large; position: absolute; right: 10px; top: 257.5px">0</p>
 
             <br>
             <br>
@@ -222,7 +258,7 @@
                 <span class="tooltiptext">Every time you buy a factory, 75 Pizza Rolls are earned every second.</span>
             </div>
             <p id="costFactory" style="position: absolute; left: 60px; top: 360.5px"> Pizza Rolls</p>
-            <p id="amountFactory" style="font-size:large; position: absolute; right: -10px; top: 355.5px">0</p>
+            <p id="amountFactory" style="font-size:large; position: absolute; right: 10px; top: 355.5px">0</p>
             <br>
             <br>
 
@@ -234,7 +270,7 @@
                 <span class="tooltiptext">Every time you buy a mine, 500 Pizza Rolls are earned every second.</span>
             </div>
             <p id="costMine" style="position: absolute; left: 60px; top: 455.5px"> Pizza Rolls</p>
-            <p id="amountMine" style="font-size:large; position: absolute; right: -10px; top: 452.5px">0</p>
+            <p id="amountMine" style="font-size:large; position: absolute; right: 10px; top: 452.5px">0</p>
             <br>
             <br>
 
@@ -283,25 +319,6 @@
 
                 mine = localStorage.getItem("mine");
                 mine = parseInt(mine);
-                
-                document.getElementById('amountAutoClick').innerHTML =  autoClick;
-                document.getElementById('costAutoClick').innerHTML = ((autoClick + 1) * 15) + " Pizza Rolls";
-
-                document.getElementById('amountShopper').innerHTML = shopper;
-                document.getElementById('costShopper').innerHTML = ((shopper + 1) * 100) + " Pizza Rolls";
-
-                document.getElementById('amountFarm').innerHTML = farm;
-                document.getElementById('costFarm').innerHTML = ((farm + 1) * 750) + " Pizza Rolls";
-
-                document.getElementById('amountFactory').innerHTML = factory;
-                document.getElementById('costFactory').innerHTML = ((factory + 1) * 5000) + " Pizza Rolls";
-
-                document.getElementById('amountMine').innerHTML = mine;
-                document.getElementById('costMine').innerHTML = ((mine + 1) * 35000) + " Pizza Rolls";
-
-                document.getElementById("pizzaRollsPerSec").innerHTML = (((autoClick) + (shopper * 3) + (farm * 10) + (factory * 75) + (mine * 500))) + " Pizza Roll(s) per Second";
-
-                document.getElementById("pizzaRollsPerClick").innerHTML = clickmultiplier + " Pizza Roll(s) per Click";
             }
 
             window.onload = load()
