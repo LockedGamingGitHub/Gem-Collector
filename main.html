@@ -97,7 +97,7 @@
         .top_header {
             position: absolute;
             top: 25px;
-            right: 5px;
+            right: 35px;
             width: 200px;
             height: 100px;
         }
@@ -133,7 +133,7 @@
             border:0.3rem solid rgb(86, 61, 0);
             border-radius: 25px;
             height:0;
-            width: 178px;
+            width: 208px;
         }
 
         .boxed {
@@ -141,7 +141,7 @@
             padding-left: 2px;
             border: 5px solid rgb(86, 61, 0);
             border-radius: 25px;
-            width: auto;
+            width: 220px;
         }
         
 
@@ -181,8 +181,8 @@
     </head>
     <body onload="load()">
 
-        <p id="pizzaRollsPerSec">0 Pizza Roll(s) per Second</p>
-        <p id="pizzaRollsPerClick">1 Pizza Roll(s) per Click</p>
+        <p id="PizzaRollsPerSec">0 Pizza Roll(s) per Second</p>
+        <p id="PizzaRollsPerClick">1 Pizza Roll(s) per Click</p>
         <a href=# onclick="add()"><img src="images/pizzaroll.png" width="150px" height="150px"></a>
         <br><br>
         <a href="#"><p><input type="text" id="text" disabled style= text-align:center></a> pizza rolls</p>
@@ -213,7 +213,7 @@
             </div>
 
             <p id="costAutoClick" style="position: absolute; left: 60px; top: 65px"> Pizza Rolls</p>
-            <p id="amountAutoClick" style="font-size:large; position: absolute; right: 10px; top: 62.5px">0</p>
+            <p id="amountAutoClick" style="font-size:large; position: absolute; right: -10px; top: 62.5px">0</p>
 
             <br>
             <br>
@@ -228,7 +228,7 @@
             </div>
 
             <p id="costShopper" style="position: absolute; left: 60px; top: 165px"> Pizza Rolls</p>
-            <p id="amountShopper" style="font-size:large; position: absolute; right: 10px; top: 160px">0</p>
+            <p id="amountShopper" style="font-size:large; position: absolute; right: -10px; top: 160px">0</p>
 
             <br>
             <br>
@@ -243,7 +243,7 @@
             <span class="tooltiptext">Every time you buy a farm, 10 Pizza Rolls are earned every second.</span>
             </div>
             <p id="costFarm" style="position: absolute; left: 60px; top: 262.5px"> Pizza Rolls</p>
-            <p id="amountFarm" style="font-size:large; position: absolute; right: 10px; top: 257.5px">0</p>
+            <p id="amountFarm" style="font-size:large; position: absolute; right: -10px; top: 257.5px">0</p>
 
             <br>
             <br>
@@ -258,7 +258,7 @@
                 <span class="tooltiptext">Every time you buy a factory, 75 Pizza Rolls are earned every second.</span>
             </div>
             <p id="costFactory" style="position: absolute; left: 60px; top: 360.5px"> Pizza Rolls</p>
-            <p id="amountFactory" style="font-size:large; position: absolute; right: 10px; top: 355.5px">0</p>
+            <p id="amountFactory" style="font-size:large; position: absolute; right: -10px; top: 355.5px">0</p>
             <br>
             <br>
 
@@ -270,7 +270,7 @@
                 <span class="tooltiptext">Every time you buy a mine, 500 Pizza Rolls are earned every second.</span>
             </div>
             <p id="costMine" style="position: absolute; left: 60px; top: 455.5px"> Pizza Rolls</p>
-            <p id="amountMine" style="font-size:large; position: absolute; right: 10px; top: 452.5px">0</p>
+            <p id="amountMine" style="font-size:large; position: absolute; right: -10px; top: 452.5px">0</p>
             <br>
             <br>
 
@@ -376,7 +376,8 @@
                     snd.playbackRate = 1.5;
                     update();
                 }
-            }
+            }     
+            
         </script>
     </body>
 </html>
