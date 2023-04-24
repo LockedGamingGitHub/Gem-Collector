@@ -1,1 +1,2 @@
-this is for a project, might still work on it when it is due.
+#Pizza-Roll-Incremental
+This game is for a project.
