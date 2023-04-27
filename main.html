@@ -346,8 +346,7 @@
             }
 
             function buyShopper() {
-                if (autoClick >= 10){
-                    if (pizzaRollCount >= ((shopper + 1) * 100)) {
+                if (pizzaRollCount >= ((shopper + 1) * 100)) {
                     pizzaRollCount = pizzaRollCount - ((shopper + 1) * 100);
                     shopper = shopper + 1;
                     save();
@@ -355,12 +354,10 @@
                     snd.playbackRate = 1.5;
                     update();
                 }
-                }
                 
             }
 
             function buyFarm() {
-                if (shopper >= 10) {
                     if (pizzaRollCount >= ((farm + 1) * 750)) {
                         pizzaRollCount = pizzaRollCount - ((farm + 1) * 750);
                         farm = farm + 1;
@@ -369,12 +366,9 @@
                         snd.playbackRate = 1.5;
                         update();
                     }                    
-                }
-
             }
 
             function buyFactory() {
-                if (farm >= 10) {
                     if (pizzaRollCount >= ((factory + 1) * 5000)) {
                         pizzaRollCount = pizzaRollCount - ((factory + 1) * 5000);
                         factory = factory + 1;
@@ -383,12 +377,9 @@
                         snd.playbackRate = 1.5;
                         update();
                     }                    
-                }
-
             }
 
             function buyMine() {
-                if (factory >= 10) {
                     if (pizzaRollCount >= ((mine + 1) * 35000)) {
                         pizzaRollCount = pizzaRollCount - ((mine + 1) * 35000);
                         mine = mine + 1;
@@ -397,8 +388,6 @@
                         snd.playbackRate = 1.5;
                         update();
                     }
-                }
-
             }
 
             function reset() {
